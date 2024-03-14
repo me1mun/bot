@@ -10,6 +10,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            flex-direction: column;
         }
         button {
             padding: 10px 20px;
@@ -27,7 +28,7 @@
     <div class="form">
         <h2 id="score">Score</h2>
         <p id="username">Name</p>
-        <button id="sendButton">Send</button>
+        <button id="sendButton" onclick="getRandomNumber()">Generate Random Number</button>
     </div>
 </div>
 
@@ -38,10 +39,21 @@
     function updateUsername() {
         let userData = tg.initDataUnsafe.user;
         let firstName = userData.first_name;
-        document.getElementById('username').innerText = firstName;
+        document.getElementById('username').innerText = "Hello, " + firstName + "!";
+    }
+
+    function updateScore(score) {
+        document.getElementById('score').innerText = "Score: " + score;
+    }
+
+    async function getRandomNumber() {
+        const response = await fetch('/get_random_number');
+        const data = await response.json();
+        updateScore(data.random_number);
     }
 
     updateUsername();
+    updateScore();
 </script>
 </body>
 </html>
