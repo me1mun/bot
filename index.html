@@ -47,8 +47,11 @@
     }
 
     async function getRandomNumber() {
-        tg.sendData('a');
-        //updateScore(data.random_number);
+        // Запрашиваем случайное число у бота
+        let response = await fetch('/get_random_number');
+        let data = await response.json();
+        // Обновляем отображение случайного числа на странице
+        updateScore(data.random_number);
     }
 
     updateUsername();
