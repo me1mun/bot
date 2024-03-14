@@ -47,13 +47,11 @@
     }
 
     async function getRandomNumber() {
-        const response = await fetch('/get_random_number');
-        const data = await response.json();
-        updateScore(data.random_number);
+        tg.sendData('a');
+        //updateScore(data.random_number);
     }
 
     updateUsername();
-    getRandomNumber();
 </script>
 </body>
 </html>
